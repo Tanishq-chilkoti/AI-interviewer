@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Loader2, CheckCircle2, AlertCircle, ArrowRight, Mic } from 'lucide-react';
 
 export function InterviewScreen({ 
-  role, level, topic, 
+  role, level, topic, resumeText, askedQuestions,
   onCompleteQuestion,
   onFinishInterview,
   questionNumber,
@@ -42,7 +42,7 @@ export function InterviewScreen({
       } else {
         res = await fetch('/api/generate-question', {
           method: 'POST',
-          body: JSON.stringify({ role, level, topic })
+          body: JSON.stringify({ role, level, topic, resumeText, askedQuestions })
         });
         const data = await res.json();
         setQuestionData(data);
